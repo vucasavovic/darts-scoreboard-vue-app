@@ -1,0 +1,12 @@
+$grey:rgb(219, 219, 219);
+$themeMain-One:rgb(70, 193, 189);
+
+input{
+    padding: 1rem;
+    border: 1px solid $grey;
+    width: 100%;
+  
+    &:focus{
+        outline: none;
+    }
+  }
