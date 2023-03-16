@@ -1,10 +1,11 @@
 <template>
-    <button type="button">{{ props.text }}</button>
+    <button :class="props.theme" type="button">{{ props.text }}</button>
 </template>
 
 <script setup>
  const props = defineProps({ 
-    text:String
+    text:String,
+    theme:String
 })
 </script>
 
@@ -12,10 +13,11 @@
 button{
     padding: 10px 2rem;
     background-color:$themeMain-One;
-    color: black;
+    
     width: fit-content;
     cursor: pointer;
     font-weight: 700;
     border-radius: 4px;
+    font-size: 1rem;
 }
 </style>

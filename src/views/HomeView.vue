@@ -4,18 +4,18 @@
 
         <div class="game-type">
           <div class="game-title">
-            <p class="main">Cricket</p>
+            <p class="main panel-title">Cricket</p>
             <p class="sub">Cut throat</p>
           </div>
       </div>
 
       <div class="player-list">
-          <div class=""><p>Players</p><p>{{ store.playersCount() }} /4</p></div>
+          <div class=""><p>Players</p><p>{{ GameManager.playersCount() }} /4</p></div>
 
-          <div v-for="player in store.getPlayers()" :key="player.id" class="player">
-            <p>{{player.id}}</p>
+          <div v-for="(player, index) in GameManager.getPlayers()" :key="player.id" class="player">
+            <p>{{index+1}}</p>
             <p class="name">{{ player.name }}</p>
-            <p>edit</p>
+            <Icon @click="GameManager.game.removePlayer(player.id)" imgName="close.svg"/>
           </div>
 
           <div class="new-player">
@@ -24,7 +24,7 @@
           </div>
       </div>
 
-      <Button @click="store.game.play()" text="Play"/>
+      <Button @click="GameManager.play()" text="Play"/>
 
     </section>
      
@@ -33,19 +33,19 @@
 
 <script setup>
 import Button from '../components/Button.vue';
- 
+import Icon from '../components/Icon.vue';
 
-import {useMainStore} from '@/stores/main'
+import {useGameManager} from '@/stores/GameManager'
 import { ref } from 'vue';
 
-const store = useMainStore();
+const GameManager = useGameManager();
 const newPlayerInput = ref(null);
  
 
 const addPlayerhandler = ()=>{
   const newPlayerName = newPlayerInput.value.value;
   newPlayerInput.value.value = '';
-  store.addPlayer(newPlayerName);
+  GameManager.addPlayer(newPlayerName);
 }
 </script>
 
@@ -64,13 +64,12 @@ const addPlayerhandler = ()=>{
 
 .player-list{
   margin: 0 auto;
-  margin-top: 3rem;
   width: 100%;
 
   >:nth-child(n+2){
-    margin-top: 2rem;
+    margin-top: 0.6rem;
   }
- 
+
   >*{
     display: flex;
     justify-content: space-between;

@@ -1,68 +1,35 @@
 <template>
   <main class="view pause">
       <section class="panel">
-          <h1>Pause</h1>
+          <h1 class="panel-title">Paused</h1>
+        
+          <div class="help">
+            <h3>How?</h3>
+            <p>Highlighted Player row indicatest current Player. After the Player has thrown a dart enter the strike points by clicking on Enter Strike button. Strike points could be entered all at once or one by one.</p>
+          </div>
+          <div class="buttons">
+            <Button @click="GameManager.resume()" text="Resume"/>
+            <Button theme="warning" @click="GameManager.quit()" text="Quit"/>
+          </div>
       </section>
   </main>
 </template>
 
 <script setup>
 import Button from '../components/Button.vue';
+import {useGameManager} from '@/stores/GameManager'
  
 
-import {useMainStore} from '@/stores/main'
-import { ref } from 'vue';
-
-const store = useMainStore();
-const newPlayerInput = ref(null);
+const GameManager = useGameManager();
  
-const addPlayerhandler = ()=>{
-  const newPlayerName = newPlayerInput.value.value;
-  newPlayerInput.value.value = '';
-  store.addPlayer(newPlayerName);
-}
+ 
 </script>
 
 <style lang="scss" setup>
- 
-.game-title{
-  text-align: center;
-  >.main{
-    font-size:3rem;
-    text-transform: capitalize;
-    font-weight: 600;
-  }
-  
-}
-
-
-.player-list{
-  margin: 0 auto;
-  margin-top: 3rem;
-  width: 100%;
-
-  >:nth-child(n+2){
-    margin-top: 2rem;
-  }
- 
-  >*{
-    display: flex;
-    justify-content: space-between;
-    gap: 1rem;
-  }
-}
-
-.player{
+ .buttons{
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 1rem;
-  >.name{
-    text-transform: capitalize;
-    margin-right: auto;
-    font-size: 1.6rem;
-    font-weight: 600;
-
-  }
-}
+  flex-direction: column;
+  align-items:center ;
+  gap: 2rem;
+ }
 </style>

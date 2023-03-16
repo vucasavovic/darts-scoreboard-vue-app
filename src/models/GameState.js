@@ -1,5 +1,7 @@
 export const GameState = {
-    Default: Symbol('default'),
-    Playing: Symbol('playing'),
-    Paused: Symbol('paused'),
+    Default: Symbol('DEFAULT'),
+    Playing: Symbol('PLAYING'),
+    Forbidden: Symbol('FORBIDEN'),
+    Paused: Symbol('PAUSED'),
+    Finished:Symbol('FINISHED')
 }
