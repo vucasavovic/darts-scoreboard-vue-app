@@ -4,12 +4,12 @@
           <h1 class="panel-title">Paused</h1>
         
           <div class="help">
-            <h3>How?</h3>
-            <p>Highlighted Player row indicatest current Player. After the Player has thrown a dart enter the strike points by clicking on Enter Strike button. Strike points could be entered all at once or one by one.</p>
+            <h3>How to play?</h3>
+            <p>Click on a table cell to enter a strike. In the popup window choose multiplier that matches your throw!</p>
           </div>
           <div class="buttons">
             <Button @click="GameManager.resume()" text="Resume"/>
-            <Button theme="warning" @click="GameManager.quit()" text="Quit"/>
+            <Button theme="warning" @click="router.push('lobby')" text="Quit"/>
           </div>
       </section>
   </main>
@@ -18,8 +18,9 @@
 <script setup>
 import Button from '../components/Button.vue';
 import {useGameManager} from '@/stores/GameManager'
+import { useRouter } from 'vue-router';
  
-
+const router = useRouter();
 const GameManager = useGameManager();
  
  
@@ -27,9 +28,13 @@ const GameManager = useGameManager();
 
 <style lang="scss" setup>
  .buttons{
+  margin-top: 2rem;
   display: flex;
   flex-direction: column;
   align-items:center ;
   gap: 2rem;
+ }
+ .help{
+  text-align: center;
  }
 </style>

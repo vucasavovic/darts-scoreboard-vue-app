@@ -5,7 +5,7 @@
         <div class="card">
             <header>
                 <h3 v-if="props.title" class="title">{{ props.title }}</h3>
-                <Icon @click="display(false)" imgName="close.svg"/>
+                <Icon @click="display(false,null)" imgName="close.svg"/>
                  
             </header>
            
@@ -17,18 +17,33 @@
  
  <script setup>
  import Icon from './Icon.vue';
-import { ref } from 'vue';
+ import { ref } from 'vue';
+ import {useGameManager} from '@/stores/GameManager'
 
+ const GameManager = useGameManager();
   const props = defineProps({ 
     title:String
  })
 
  const active = ref(false)
+ const callback = ref(null);
 
- const display = (isVisible)=>{
-    active.value = isVisible
+ const handleMultiplierSelected = (multiplier)=>{
+ 
+    callback.value(multiplier);
+    display(false,null);
  }
- defineExpose({display})
+
+ const display = (isVisible,cbk)=>{
+    active.value = isVisible
+    if(!active.value){
+        GameManager.showMultiplierPopup=false;
+        callback.value = null;
+    }else{
+        callback.value = cbk;
+    }
+ }
+ defineExpose({display,handleMultiplierSelected})
 
  </script>
  

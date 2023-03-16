@@ -44,7 +44,7 @@ const display = (v)=>{
    
 
     position: fixed;
-    top: 70px;
+    top: 64px;
     left: 50%;
     transform: translate(-50%,-100%);
 

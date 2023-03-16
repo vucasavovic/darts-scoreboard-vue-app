@@ -2,7 +2,7 @@
   <Feedback :feedback="GameManager.feedback" /> 
   <div class="header">
      <img  src="/logo.svg" alt="Logo"> 
-    <Icon @click="GameManager.pause()" imgName="settings.svg"/>
+    <Icon v-if="route.name=='gameplay'" @click="GameManager.pause()" imgName="settings.svg"/>
   </div>
   <RouterView />
 </template>
@@ -12,6 +12,8 @@
 import { useGameManager } from './stores/GameManager';
 import Feedback from './components/Feedback.vue';
 import Icon from './components/Icon.vue';
+import { useRoute } from 'vue-router';
+const route = useRoute();
 const GameManager = useGameManager();
  window.addEventListener('keypress',(e)=>{
  
@@ -28,7 +30,8 @@ const GameManager = useGameManager();
   top: 0;
   left: 0;
   width: 100vw;
-  min-height: 70px;
+  height: 64px;
+  
   background-color:white;
 
   display: flex;

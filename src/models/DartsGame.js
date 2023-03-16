@@ -85,8 +85,6 @@ export default class DartsGame {
 
     setState(newState){
         this.state = newState;
-        console.log(this.state);
-
         switch(newState){
             case GameState.Default:
                 break;

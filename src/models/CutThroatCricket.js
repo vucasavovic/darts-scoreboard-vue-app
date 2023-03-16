@@ -24,6 +24,7 @@ export default class CutThroatCricket extends DartsGame{
 
         if(this.currentPlayer.id === number.parent){
             if(number.closed){
+                 
                 this.assignPoints(number.val * multiplier,number.name);
                
             }else{
@@ -38,7 +39,7 @@ export default class CutThroatCricket extends DartsGame{
                 });
 
                 if(surplus>0){
-                    this.assignPoints(number.val * surplus);
+                    this.assignPoints(number.val * surplus,number.name);
                 } 
                 
             }  
@@ -54,6 +55,7 @@ export default class CutThroatCricket extends DartsGame{
      for(var player of this.players){
         if(player!=this.currentPlayer){
             let num = player.numbers.find(n=>n.name===numName);
+            console.log(numName,' : ', num)
             //console.log(`Num ${numName} closed: `, num.closed )
             if(num.closed==false){
                 player.addScore(pts);
@@ -84,6 +86,7 @@ export default class CutThroatCricket extends DartsGame{
         this.throws--;
         if(this.throws==0){
             this.setState(GameState.Forbidden)
+            this.currentPlayer = null
             setTimeout(()=>{
                 this.throws=3;
                 this.nextPlayer();

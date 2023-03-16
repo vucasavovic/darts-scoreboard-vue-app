@@ -39,7 +39,7 @@ import Button from '../components/Button.vue';
 import Icon from '../components/Icon.vue';
 
 import {useGameManager} from '@/stores/GameManager'
-import { ref } from 'vue';
+import { ref,onMounted } from 'vue';
 
 const GameManager = useGameManager();
 const newPlayerInput = ref(null);
@@ -50,6 +50,10 @@ const addPlayerhandler = ()=>{
   newPlayerInput.value.value = '';
   GameManager.addPlayer(newPlayerName);
 }
+
+onMounted(()=>{
+  GameManager.quit()
+})
 </script>
 
 <style lang="scss" setup>

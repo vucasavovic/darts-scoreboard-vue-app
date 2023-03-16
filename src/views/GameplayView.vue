@@ -3,10 +3,10 @@
 
      <Popup ref="multiplierPopup" title="Multiply" >
       <div class="grid-4">
-        <MultiplyButton :value="1" theme="black"/>
-        <MultiplyButton :value="2" theme="default"/>
-        <MultiplyButton :value="3" theme="warning"/>
-        <MultiplyButton :value="0" theme="neutral"/>
+        <MultiplyButton @click="multiplierPopup.handleMultiplierSelected(1)" :value="1" theme="black"/>
+        <MultiplyButton @click="multiplierPopup.handleMultiplierSelected(2)" :value="2" theme="default"/>
+        <MultiplyButton @click="multiplierPopup.handleMultiplierSelected(3)" :value="3" theme="warning"/>
+        <!-- <MultiplyButton @click="multiplierPopup.value.handleMultiplierSelected(0)":value="0" theme="neutral"/> -->
       </div>
     </Popup>
 
@@ -14,6 +14,9 @@
       <section class="panel">
 
         <div class="current-player">
+          <!-- <div class="avatar">
+              <img src="/images/avatar.png" alt="Avatar img">
+            </div> -->
           <div class="player-name">
             <p>Current player</p>
             <p>{{GameManager.game.currentPlayer?.name || "Jon Doe"}}</p>
@@ -39,7 +42,7 @@
             <div :class="['column',{selected:isCurrentPlayer(player)}]" v-for="(player,index) in GameManager.game.players" :key="index" >
               <p class="cell name">{{ player.name }}</p>
               <a v-for="(number,i) in player.numbers || []" class="cell" > 
-                <img @click.prevent="handleCellClick(number)" :src="`/images/strikes/strike-${player.numbers[i].strikes}.svg`" alt="">
+                <img @click.prevent="handleCellClick(player,number)" :src="`/images/strikes/strike-${player.numbers[i].strikes}.svg`" alt="">
               </a>
               <p class="cell name">{{ player.score }}</p>
           </div>
@@ -47,7 +50,7 @@
 
           <div class="flex-between">
             <Button @click="GameManager.game.miss()" text="Missed"/>
-            <Icon imgName="info.svg"/>
+            <!-- <Icon imgName="info.svg"/> -->
           </div>
          
       </section>
@@ -60,23 +63,29 @@ import Button from '../components/Button.vue';
 import Popup from '../components/Popup.vue';
 import MultiplyButton from '../components/MultiplyButton.vue';
 import { GameState } from '../models/GameState';
+import { storeToRefs } from 'pinia'
 import {useGameManager} from '@/stores/GameManager'
-import { ref,computed,onUpdated } from 'vue';
+import { ref,computed,onUpdated,watch } from 'vue';
 import { useRouter } from 'vue-router';
  
 const router = useRouter();
 const GameManager = useGameManager();
+const {showMultiplierPopup} = storeToRefs(GameManager)
  
 const multiplierPopup = ref(null);
-
-const handleCellClick = (number)=>{
-  GameManager.strike(number,1);
-}
-
+ 
 const isCurrentPlayer = (player)=>{
   return player == GameManager.game.currentPlayer ? true : false;
 }
 
+const handleCellClick = (player,number)=>{
+  if(isCurrentPlayer(player)){
+    multiplierPopup.value.display(true,(multiplier)=>{
+      GameManager.strike(number,multiplier)
+    });
+  }
+}
+ 
 const gameOver = ()=>{
  
   return GameManager.game.state === GameState.Finished;
@@ -106,13 +115,15 @@ onUpdated(()=>{
     flex-direction: column;
     flex: 1;
     transition: all 0.2s ease-in-out;
+    background-color:rgba($color: rgb(0, 0, 0), $alpha: 0.04);
     &.numbers{
       width: fit-content;
       max-width:40px;
     }
     &.selected{
-      background-color:rgba($color: black, $alpha: 0.00);
+      background-color:white;
       box-shadow: 0 0 12px rgba($color: rgb(17, 16, 61), $alpha: 0.12);
+      border: 1px solid black;
       & .cell>img{cursor: pointer;}
     }
     >:not(:last-child){
@@ -191,5 +202,15 @@ onUpdated(()=>{
   width: 100%;
   display: flex;
   justify-content: space-between;
+}
+
+.avatar{
+  width: 80px;
+  height: 80px;
+  >img{
+    width: 100%;
+  }
+  overflow: hidden;
+  border-radius: 300;
 }
 </style>

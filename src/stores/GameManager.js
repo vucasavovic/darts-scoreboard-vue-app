@@ -9,12 +9,12 @@ export const useGameManager = defineStore('main', ()=>{
  
   const game = reactive(new CutThroatCricket());
   const router = useRouter();
-  
+  const showMultiplierPopup = ref(false);
 
   const feedback = ref(new Feedback('Default feedback!'));
 
   const strike = (number,multiplier=1)=>{
-    game.strike(number)
+    game.strike(number,multiplier)
   }
 
   const play = ()=>{
@@ -56,9 +56,8 @@ export const useGameManager = defineStore('main', ()=>{
   }
 
   addPlayer('George');
-  addPlayer('Moira');
-  addPlayer('Nadine');
-  addPlayer('Shaniqua')
+  addPlayer('Moira M.');
+ 
 
-  return {feedback, game,quit, pause, resume, play,strike, playersCount, getPlayers, addPlayer}
+  return {feedback, game, showMultiplierPopup ,quit, pause, resume, play,strike, playersCount, getPlayers, addPlayer}
 })
