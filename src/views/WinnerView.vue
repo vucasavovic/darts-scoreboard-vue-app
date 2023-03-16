@@ -1,12 +1,10 @@
 <template>
     <main class="view winner-view">
         <div class="winner">
-            <img src="/images/winner.svg" alt="Winner graphics">
-            <h1>{{ winner.name }}</h1>
-
-            <div class="score">
-                <p>Score</p>
-                <p>{{ winner.score }}</p>
+            <img src="/images/darts-board.svg" alt="Winner graphics">
+            <div class="player">
+                <p>Well done!</p>
+                <h1>{{ winner.name }}</h1>
             </div>
            
             <Button @click="restart()" text="To lobby"/>
@@ -45,14 +43,19 @@ const restart = ()=>{
         flex-direction: column;
         align-items: center;
         gap: 2rem;
+
+        >img{
+            max-width: 500px;
+        }
     }
 
-    & .score{
+    & .player{
+        display: block;
         text-align: center;
         >:nth-child(2){
-            font-size: 3rem;
+            font-size: 3.4rem;
             font-weight: 700;
-            margin-top: 0.3rem;
+            margin-top: 0.1rem;
         }
     }
 }

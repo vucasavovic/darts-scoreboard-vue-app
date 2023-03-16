@@ -19,5 +19,9 @@ button{
     font-weight: 700;
     border-radius: 4px;
     font-size: 1rem;
+
+    &.full-width{
+        width: 100%;
+    }
 }
 </style>

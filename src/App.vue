@@ -2,7 +2,7 @@
   <Feedback :feedback="GameManager.feedback" /> 
   <div class="header">
      <img  src="/logo.svg" alt="Logo"> 
-    <Icon imgName="settings.svg"/>
+    <Icon @click="GameManager.pause()" imgName="settings.svg"/>
   </div>
   <RouterView />
 </template>

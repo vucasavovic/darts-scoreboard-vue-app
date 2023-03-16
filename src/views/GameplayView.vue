@@ -97,24 +97,32 @@ onUpdated(()=>{
 .score-table{
   display: flex;
   width: 100%;
+  border : 1px solid $grey;
+  border-radius: 4px;
+  overflow: hidden;
 
   >.column{
     display: flex;
     flex-direction: column;
     flex: 1;
-    transition: background-color 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
     &.numbers{
       width: fit-content;
       max-width:40px;
     }
     &.selected{
-      background-color:rgba($color: black, $alpha: 0.12);
+      background-color:rgba($color: black, $alpha: 0.00);
+      box-shadow: 0 0 12px rgba($color: rgb(17, 16, 61), $alpha: 0.12);
+      & .cell>img{cursor: pointer;}
     }
+    >:not(:last-child){
+      border-bottom: 1px solid $grey;
+    }
+    
   }
    
   & .cell{
     padding: 0.2rem;
-    border-bottom: 1px solid $grey;
     text-align: center;
     width: 100%;
     height: 52px;
@@ -123,7 +131,6 @@ onUpdated(()=>{
     justify-content: center;
     overflow-wrap: break-word;
     word-break: break-all;
-    
     
     &.name{
       font-weight: 600;
@@ -135,7 +142,6 @@ onUpdated(()=>{
 
     &.dark{
       background-color: rgb(236, 236, 236);
-      
     }
    
     >img{
@@ -143,13 +149,10 @@ onUpdated(()=>{
       width: auto;
       height: 100%;
       pointer-events:all;
-      cursor: pointer;
-      
     }
     >*{
       font-size: inherit;
       pointer-events: none;
-       
     }
   }
 }

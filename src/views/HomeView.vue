@@ -2,12 +2,15 @@
   <main class="view lobby">
     <section class="panel">
 
+      <img class="graphics-main" src="/images/darts-board.svg" alt="Darts board">
+
         <div class="game-type">
           <div class="game-title">
             <p class="main panel-title">Cricket</p>
             <p class="sub">Cut throat</p>
           </div>
       </div>
+      
 
       <div class="player-list">
           <div class=""><p>Players</p><p>{{ GameManager.playersCount() }} /4</p></div>
@@ -24,7 +27,7 @@
           </div>
       </div>
 
-      <Button @click="GameManager.play()" text="Play"/>
+      <Button class="full-width" @click="GameManager.play()" text="Play"/>
 
     </section>
      
@@ -89,5 +92,9 @@ const addPlayerhandler = ()=>{
     font-weight: 600;
 
   }
+}
+
+.graphics-main{
+  max-width: 130px;
 }
 </style>

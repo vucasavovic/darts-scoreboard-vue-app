@@ -15,7 +15,7 @@ export default class CutThroatCricket extends DartsGame{
     miss(){
         if(this.state==GameState.Playing){
             this.throwsCount()
-            this.audio.playByName('miss.wav')
+            this.audio.playByName('missed.wav');
         } 
     }
  
@@ -29,14 +29,17 @@ export default class CutThroatCricket extends DartsGame{
             }else{
 
                 let surplus = number.strike(multiplier,(closed)=>{
-                   this.audio.playByName('strike.wav');
-               
+                    
+                    if(closed){
+                        this.audio.playByName('closed.wav');
+                    }else{
+                        this.audio.playByName('strike.wav');
+                    }
                 });
 
                 if(surplus>0){
-                    
                     this.assignPoints(number.val * surplus);
-                }
+                } 
                 
             }  
             
@@ -47,7 +50,7 @@ export default class CutThroatCricket extends DartsGame{
     }
 
    assignPoints(pts,numName){
-     console.log('Points: ',pts);
+    this.audio.playByName('points.wav');
      for(var player of this.players){
         if(player!=this.currentPlayer){
             let num = player.numbers.find(n=>n.name===numName);
@@ -58,7 +61,7 @@ export default class CutThroatCricket extends DartsGame{
         }
      }
 
-     this.audio.playByName('closed.wav');
+      
    }
 
    gameOver(){
