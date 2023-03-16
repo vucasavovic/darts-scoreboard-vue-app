@@ -19,7 +19,7 @@
             </div> -->
           <div class="player-name">
             <p>Current player</p>
-            <p>{{GameManager.game.currentPlayer?.name || "Jon Doe"}}</p>
+            <p>{{GameManager.game.currentPlayer?.name || "..."}}</p>
           </div>
            
           <div  class="throws">

@@ -4,8 +4,15 @@ export default class AudioPlayer{
         audio = new Audio();
         muted = false;
         volume=1;
+        
         constructor(){
            this.setVolume(0.5)
+        }
+
+        delayPlay(sound,delay){
+            setTimeout(()=>{
+                this.playByName(sound)
+            },delay)
         }
 
         playByName(sound){
