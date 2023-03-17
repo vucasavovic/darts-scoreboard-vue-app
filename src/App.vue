@@ -27,6 +27,7 @@ const GameManager = useGameManager();
  .header{
   padding: 0 clamp(1rem,4vw,3rem);
   position: fixed;
+  z-index: 100;
   top: 0;
   left: 0;
   width: 100vw;

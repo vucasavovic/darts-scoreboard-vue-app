@@ -40,21 +40,23 @@ const display = (v)=>{
 <style lang="scss" scoped>
 .feedback{
     padding: 1rem 3rem;
-  
-   
-
     position: fixed;
+    z-index: 99;
     top: 64px;
     left: 50%;
     transform: translate(-50%,-100%);
-
-
     transition: transform .2s ease-in-out;
     border-radius: 0 0 4px 4px;
 
     width: 100%;
     max-width: 500px;
     text-align: center;
+
+    @include breakpoint-down(680px){
+        border-radius: 0;
+        width: 100%;
+        padding: 1rem;
+    }
 
     &.default{
         background-color: rgb(234, 238, 237);

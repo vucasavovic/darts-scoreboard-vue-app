@@ -1,6 +1,7 @@
 import DartsGame from './DartsGame'
 import {GameState} from '@/models/GameState'
 import { CricketNumber } from './Number';
+import Feedback from './Feedback';
  
 const description = "Cut Throat Cricket is played the same as Cricket, except that when a player opens a number and begins scoring, the points are given to all opponents that do not have that number closed.";
 
@@ -100,8 +101,12 @@ export default class CutThroatCricket extends DartsGame{
     }
     
     addPlayer(name){
-        const player = super.addPlayer(name);
-        player.numbers = this.createNumbersArray(this.cricketNumbers,player.id)
+        const res = super.addPlayer(name);
+        if(res instanceof Feedback){
+            return res;
+        }else{
+            res.numbers = this.createNumbersArray(this.cricketNumbers,res.id)
+        }
     }
 
     quit(){

@@ -12,4 +12,7 @@ export default class Feedback{
     static warning(message){
             return new Feedback(message,"warning")
     }
+    static default(message){
+        return new Feedback(message,"default")
+    }
 }

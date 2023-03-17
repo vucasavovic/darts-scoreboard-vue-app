@@ -67,19 +67,19 @@ export default class DartsGame {
     }
 
     addPlayer(name) {
-      
-        if(!name || name==='') return  Feedback.warning('Name must contain at least 1 character!');
-        if(name.length>12) return  Feedback.warning('Max name character length is 12!');
-        if(this.players.length<this.playerRange.max){
+        let feedback = null
+        if(!name || name==='')  feedback = Feedback.warning('A name must have 1-12 characters!');
+        else if(name.length > 12)  feedback =  Feedback.warning('A name must have 1-12 characters!');
+        else if(this.players.length<this.playerRange.max){
             const formattedName = capitalizeFirstLetter(name.toLowerCase());
-            if(this.players.find(p=>p.name === formattedName)) return  Feedback.warning('Duplicate Player name!');
+            if(this.players.find(p=>p.name === formattedName)) return  Feedback.warning('Players name must be unique.');
             let player = new Player(formattedName);
             this.players.push(player)
             return player;
         }else{
-            return Feedback.warning('Max number of player!')
+            feedback = Feedback.warning('Max number of players reached!')
         }
-       
+       return feedback;
     }
 
     removePlayer(id){

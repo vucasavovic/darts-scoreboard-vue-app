@@ -49,7 +49,7 @@
           </div>
 
           <div class="flex-between">
-            <Button @click="GameManager.game.miss()" text="Missed"/>
+            <Button @click="GameManager.game.miss()" text="Wall"/>
             <!-- <Icon imgName="info.svg"/> -->
           </div>
          
