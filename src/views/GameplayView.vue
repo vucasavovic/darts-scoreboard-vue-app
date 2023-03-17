@@ -80,7 +80,8 @@ const isCurrentPlayer = (player)=>{
 
 const handleCellClick = (player,number)=>{
   if(isCurrentPlayer(player)){
-    multiplierPopup.value.display(true,(multiplier)=>{
+      GameManager.game.audio.playByName('pop.wav');
+      multiplierPopup.value.display(true,(multiplier)=>{
       GameManager.strike(number,multiplier)
     });
   }
