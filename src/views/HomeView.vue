@@ -26,8 +26,10 @@
             <Button @click="addPlayerhandler()" text="Add"/>
           </div>
       </div>
+ 
+      <Button class="full-width" @click="GameManager.play()" icon="play.svg" text="Play"/>
 
-      <Button class="full-width" @click="GameManager.play()" text="Play"/>
+      <p>{{ GameManager.game.description}}</p>
 
     </section>
      

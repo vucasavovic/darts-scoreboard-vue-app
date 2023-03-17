@@ -2,13 +2,14 @@ import DartsGame from './DartsGame'
 import {GameState} from '@/models/GameState'
 import { CricketNumber } from './Number';
  
+const description = "Cut Throat Cricket is played the same as Cricket, except that when a player opens a number and begins scoring, the points are given to all opponents that do not have that number closed.";
 
 export default class CutThroatCricket extends DartsGame{
     
     cricketNumbers = [20,19,18,17,16,15,25]
 
     constructor(name,subname){
-        super("Cricket","Cut throat",2,4)
+        super("Cricket","Cut Throat",description,2,4)
         this.throws = 3;
     }
  

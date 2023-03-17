@@ -1,13 +1,9 @@
 $grey:rgb(219, 219, 219);
 $themeMain-One:#00D2DC;
 $warningColor:#C1262C;
-
-input{
-    padding: 1rem;
-    border: 1px solid $grey;
-    width: 100%;
-  
-    &:focus{
-        outline: none;
+ 
+@mixin breakpoint-down($x){
+    @media screen and (max-width:$x) {
+        @content;
     }
-  }
+}

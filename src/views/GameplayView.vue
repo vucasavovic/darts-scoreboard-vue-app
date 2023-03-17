@@ -1,11 +1,11 @@
 <template>
   <main class="view gameplay">
 
-     <Popup ref="multiplierPopup" title="Multiply" >
+     <Popup ref="multiplierPopup" title="Times.." >
       <div class="grid-4">
         <MultiplyButton @click="multiplierPopup.handleMultiplierSelected(1)" :value="1" theme="black"/>
         <MultiplyButton @click="multiplierPopup.handleMultiplierSelected(2)" :value="2" theme="default"/>
-        <MultiplyButton @click="multiplierPopup.handleMultiplierSelected(3)" :value="3" theme="warning"/>
+        <MultiplyButton class="span-2" @click="multiplierPopup.handleMultiplierSelected(3)" :value="3" theme="warning"/>
         <!-- <MultiplyButton @click="multiplierPopup.value.handleMultiplierSelected(0)":value="0" theme="neutral"/> -->
       </div>
     </Popup>
@@ -174,6 +174,7 @@ onUpdated(()=>{
   align-items: center;
   width: 100%;
   padding: 1rem 0;
+  padding-top: 0;
  
 
   >.player-name{
@@ -193,7 +194,7 @@ onUpdated(()=>{
 }
 .grid-4{
   display: grid;
-  grid-template-columns: 1fr  1fr;
+  grid-template-columns: 1fr  1fr  1fr;
   gap:0.6rem
 }
 
@@ -203,6 +204,7 @@ onUpdated(()=>{
   display: flex;
   justify-content: space-between;
 }
+ 
 
 .avatar{
   width: 80px;

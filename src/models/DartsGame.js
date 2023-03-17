@@ -9,6 +9,7 @@ import AudioPlayer from '../models/AudioPlayer'
 export default class DartsGame {
     name='';
     subname='';
+    description='';
     playerRange = {min:2,max:12};
     winner = null;
     players=[]
@@ -17,8 +18,10 @@ export default class DartsGame {
     state = GameState.Default;
     audio = new AudioPlayer();
 
-    constructor(name,subname,minPlayer,maxPlayer){
+    constructor(name,subname,description,minPlayer,maxPlayer){
         this.name = name;
+        this.subname = subname;
+        this.description= description;
         this.playerRange = {min:minPlayer,max:maxPlayer}
     }
 
@@ -29,7 +32,7 @@ export default class DartsGame {
                 this.nextPlayer()
                 resolve()
             } else{
-                reject(Feedback.warning('Invalid Player number!'))
+                reject(Feedback.warning(`${this.name} ${this.subname} requires ${this.playerRange.min}-${this.playerRange.max} players.`))
             }
         })
          

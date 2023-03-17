@@ -5,7 +5,7 @@
         
           <div class="help">
             <h3>How to play?</h3>
-            <p>Click on a table cell to enter a strike. In the popup window choose multiplier that matches your throw!</p>
+            <p>Click on a table cell to enter a strike. In a popup panel choose a multiplier value that matches what you've hit on your Darts board.</p>
           </div>
           <div class="buttons">
             <Button @click="GameManager.resume()" text="Resume"/>

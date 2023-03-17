@@ -1,9 +1,14 @@
 <template>
-    <button :class="props.theme" type="button">{{ props.text }}</button>
+    <button :class="props.theme" type="button">
+        <Icon v-show="props.icon!=''" :imgName="props.icon"/>
+    {{ props.text }}
+    </button>
 </template>
 
 <script setup>
+import Icon from './Icon.vue';
  const props = defineProps({ 
+    icon:{type:String,default:''},
     text:String,
     theme:String
 })
@@ -20,8 +25,17 @@ button{
     border-radius: 4px;
     font-size: 1rem;
 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.4rem;
+
     &.full-width{
         width: 100%;
+    }
+
+    >img{
+        max-height: 16px;
     }
 }
 </style>

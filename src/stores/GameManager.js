@@ -55,8 +55,6 @@ export const useGameManager = defineStore('main', ()=>{
     }  
   }
 
-  addPlayer('George');
-  addPlayer('Moira M.');
  
 
   return {feedback, game, showMultiplierPopup ,quit, pause, resume, play,strike, playersCount, getPlayers, addPlayer}
